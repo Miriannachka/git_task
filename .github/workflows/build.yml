@@ -1,0 +1,24 @@
+name: Build and Test
+
+# Когда workflow будет запускаться
+on:
+  push:
+    branches: [ main ]   # при пуше в main
+  pull_request:
+    branches: [ main ]   # при создании pull request в main
+
+jobs:
+  build:
+    runs-on: windows-latest   # используем Windows для сборки
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3   # скачиваем репозиторий
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'   # версия .NET
+
+    - name: Run tests
+      run: echo "Hello, GitHub Actions!"
